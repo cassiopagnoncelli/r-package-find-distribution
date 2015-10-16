@@ -2,7 +2,7 @@
 
 Set of under development R libraries useful in data modeling context.
 
-## infer-distribution
+## Infer distribution
 
 As title says, infer distribution intends to find the best-fit distribution for a given data set.
 
@@ -17,11 +17,12 @@ x <- rf(10000, 5, 8)
 
 # Searches for pdf candidates.
 inferDistribution(x)
+```
 
-# Output:
+Output is a nice table listing best PDF candidates.
 
 pf | error
---- | ---
+--- | -----
 df | 0.1717962
 dgamma | 0.2105859
 dlnorm | 0.2226137
@@ -30,4 +31,3 @@ dnorm | 0.5110258
 dexp | 0.9432531
 dbeta | 2.3016270
 
-```
