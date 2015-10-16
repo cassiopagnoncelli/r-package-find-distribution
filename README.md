@@ -1,6 +1,4 @@
-# R packages
-
-Set of under development R libraries useful in data modeling context.
+Under-development collection of R libraries useful in data modeling context.
 
 ## Infer distribution
 
