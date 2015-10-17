@@ -21,7 +21,7 @@ library('GenSA')
 #options(error = recover)
 
 # Find the most fit distributions for the given data.
-inferDistribution <- function(x, include.exotics=FALSE) {
+inferDistribution <- function(x, include.exotics=FALSE, remove.na=TRUE, search.combinations=TRUE) {
   # Key data information.
   ds <- dataSummary(x)
   
