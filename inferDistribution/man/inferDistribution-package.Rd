@@ -25,8 +25,7 @@ Maintainer: \packageMaintainer{inferDistribution}
 \references{
 FELLER, William. An introduction to probability theory and its applications. 1950. First edition.
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
-~~ documentation directory ~~
+
 \keyword{ package }
 \seealso{
 Other packages provide similar or complimentary functionalities. See
