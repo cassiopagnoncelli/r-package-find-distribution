@@ -12,3 +12,7 @@
 vignettes/*.html
 vignettes/*.pdf
 .Rproj.user
+
+# builds and checks
+inferDistribution_*
+inferDistribution.Rcheck
