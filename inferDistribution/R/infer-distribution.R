@@ -89,15 +89,3 @@ inferDistribution <- function(x, include.exotics=FALSE) {
   
   list(params=best_params, ranking=ranking)
 }
-
-#
-# PMF and PDF database.
-#
-
-
-# Simulation.
-x <- rf(10000, 5, 8)
-hist(x, breaks=3.3*log(length(x)), probability=T)
-lines(density(x), col='red')
-
-findDistribution(x)

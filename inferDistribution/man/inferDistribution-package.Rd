@@ -35,5 +35,9 @@ and
 \code{\link[mcstoc:mcstoc]{mcstoc}}.
 }
 \examples{
-~~ simple examples of the most important functions ~~
+x <- rf(10000, 5, 8)
+hist(x, breaks=3.3*log(length(x)), probability=T)
+lines(density(x), col='red')
+
+inferDistribution(x)
 }
