@@ -1,5 +1,5 @@
-\name{inferDistribution-package}
-\alias{inferDistribution-package}
+\name{inferDistribution}
+\alias{inferDistribution}
 \alias{inferDistribution}
 \docType{package}
 \title{
@@ -13,7 +13,9 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{inferDistribution}
 \packageIndices{inferDistribution}
-~~ An overview of how to use the package, including the most important functions ~~
+This package brings along one function, inferDistribution.
+
+Equipped with that you are able to infer the most likely distribution of each axis in your dataset.
 }
 \author{
 \packageAuthor{inferDistribution}
@@ -21,14 +23,16 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{inferDistribution}
 }
 \references{
-~~ Literature or other references for background information ~~
+FELLER, William. An introduction to probability theory and its applications. 1950. First edition.
 }
 ~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R ~~
 ~~ documentation directory ~~
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+Other packages provide similar or complimentary functionalities. See
+\code{\link[fitdistrplus:fitdistrplus]{fitdistrplus}}
+and
+\code{\link[mcstoc:mcstoc]{mcstoc}}.
 }
 \examples{
 ~~ simple examples of the most important functions ~~
