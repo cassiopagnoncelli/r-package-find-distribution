@@ -9,13 +9,9 @@
 \packageDescription{inferDistribution}
 }
 \details{
-
-The DESCRIPTION file:
-\packageDESCRIPTION{inferDistribution}
-\packageIndices{inferDistribution}
 This package brings along one function, inferDistribution.
-
 Equipped with that you are able to infer the most likely distribution of each axis in your dataset.
+As simple as it seems, it picks the best fit distribution for the data and returns you its name, its parameters, and its call string.
 }
 \author{
 \packageAuthor{inferDistribution}
