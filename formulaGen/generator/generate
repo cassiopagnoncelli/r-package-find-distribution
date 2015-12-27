@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Generate formulas from grammar.
+time python strings.py --file=grammars/arithmetic.gr --depth=3 --output=formulas.txt
+
+# Simplify formulas in Maxima.
+echo "display2d: false;" > maxima.in
+sed -r "s/([[:print:]]*)/ratsimp(\1);/" formulas.txt >> maxima.in
+time maxima < maxima.in > maxima.out
+
+# Extract unique formulae.
+grep "^(%o[0-9]*) " maxima.out | sed "s/\%e/exp(1)/g" | grep -v "false" | sed "s/^(%o[0-9]*) //1" | sort | uniq > result.txt
+
+# Rubbish.
+rm formulas.txt maxima.{in,out}
