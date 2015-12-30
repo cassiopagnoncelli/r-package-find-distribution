@@ -7,7 +7,7 @@ _fgen_ is a set of tricks to work around formulas.
 As an fgen subpart, *inference* infers a formula --or at least looks after
 providing a good substitute-- out a input-response set.
 
-So, in other words, it predicts _f_ in 
+So, in other words, it predicts _f_
 
 ```
 f(X, Y) = Z
