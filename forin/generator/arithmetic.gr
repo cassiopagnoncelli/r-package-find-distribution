@@ -1,4 +1,0 @@
-S : ( S ) B ( S ) | U ( S ) | 0 | 1 | 2 | 3 | T
-B : + | - | * | / | ^
-U : sqrt | exp | log
-T : x1 | x2
