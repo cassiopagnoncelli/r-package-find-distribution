@@ -2,7 +2,7 @@
 
 _fgen_ is a set of tricks to work around formulas.
 
-## Inference
+### Inference
 
 As an fgen subpart, *inference* infers a formula --or at least looks after
 providing a good substitute-- out a input-response set.
@@ -15,7 +15,7 @@ f(X, Y) = Z
 
 provided X, Y, and Z are float-vectors.
 
-## Generator
+### Generator
 
 _Generator_ outputs formulas out of a grammar capped at a given tree height.
 
