@@ -10,7 +10,7 @@ providing a good substitute-- out a input-response set.
 So, in other words, it predicts _f_
 
 ```
-_f_(X, Y) = Z
+f(X, Y) = Z
 ```
 
 provided X, Y, and Z are float-vectors.
