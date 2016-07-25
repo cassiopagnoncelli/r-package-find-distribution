@@ -9,7 +9,7 @@ sed -r "s/([[:print:]]*)/ratsimp(\1);/" formulas.txt >> maxima.in
 time maxima < maxima.in > maxima.out
 
 # Extract unique formulae.
-grep "^(%o[0-9]*) " maxima.out | sed "s/\%e/exp(1)/g" | grep -v "false" | sed "s/^(%o[0-9]*) //1" | sort | uniq > result.txt
+grep "^(%o[0-9]*) " maxima.out | sed "s/\%e/exp(1)/g" | grep -v "false" | sed "s/^(%o[0-9]*) //1" | sort | uniq | grep -v "%i" | sed "s/\%e/exp(1)/g" | sed "s/\%pi/pi/g" | grep -v "false" > result.txt
 
 # Rubbish.
 rm formulas.txt maxima.{in,out}

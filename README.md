@@ -29,3 +29,16 @@ dnorm | 0.5110258
 dexp | 0.9432531
 dbeta | 2.3016270
 
+## Forinf
+
+_Forinf_ stands for Formula Inference.
+
+Given a sample of any numeric function, ie. domain and codomain,
+
+<center>[ Y | x<sub>1</sub> x<sub>2</sub> ... x<sub>n</sub> ]</center>
+
+it tries to infer a good-fitting formula so as
+
+<center>f(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>) = Y</center>
+
+or, at least, a good approximation.
