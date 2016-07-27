@@ -20,6 +20,10 @@ load_formulas <- function(keywords = NULL) {
 }
 
 formula_find <- function(y, ..., verbose=T, keywords=NULL) {
+  # R^2 function.
+  rsq <- function(f)
+    1 - sum((y - eval(parse(text=f)))^2) / sum((y - mean(y))^2)
+  
   # If a sequence is given, create domain.
   domain_vars <- length(list(...))
   if (domain_vars == 0) {
@@ -41,8 +45,11 @@ formula_find <- function(y, ..., verbose=T, keywords=NULL) {
     filter(row_number() == 1)
   
   if (verbose)
-    cat(paste(ifelse(abs(results$err) < 1e-6, 
-      "Found this one (exact): ", "Found this one (approx): "), results$form, '\n'))
+    if (abs(results$err) < 1e-6)
+      cat(paste0('Found this one (exact): ', results$form, '\n'))
+    else
+      cat(paste0('Found this one (exact): ', results$form, '\n',
+                 '  RMSE=', results$err, '   R^2=', rsq(results$form), '\n'))
   
   as.character(results$form)
 }
