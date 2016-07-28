@@ -28,11 +28,13 @@ formula_find <- function(y, ..., verbose=T, keywords=NULL) {
   domain_vars <- length(list(...))
   if (domain_vars == 0) {
     x1 <- seq(0, length(y) - 1)
-    domain_vars <- domain_vars + 1
+    domain_vars <- 1
   }
   
   # Load and combine the various formulas.
-  text_formulas <- load_formulas('2')
+  text_formulas <- load_formulas(c(
+    as.character(domain_vars)
+  ))
   
   # Evaluate formulas.
   err <- rep(Inf, length(text_formulas))
@@ -44,12 +46,13 @@ formula_find <- function(y, ..., verbose=T, keywords=NULL) {
     arrange(err) %>% 
     filter(row_number() == 1)
   
-  if (verbose)
+  if (verbose) {
     if (abs(results$err) < 1e-6)
-      cat(paste0('Found this one (exact): ', results$form, '\n'))
+      cat(paste0('Found this one (exact): ', results$formula, '\n'))
     else
-      cat(paste0('Found this one (exact): ', results$form, '\n',
-                 '  RMSE=', results$err, '   R^2=', rsq(results$form), '\n'))
+      cat(paste0('Found this one (exact): ', results$formula, '\n',
+                 '  RMSE=', results$err, '   R^2=', rsq(results$formula), '\n'))
+  }
   
-  as.character(results$form)
+  as.character(results$formula)
 }
