@@ -79,8 +79,10 @@ model_find <- function(y, ..., lim=3, verbose=T, keywords=NULL) {
   best_formula <- formula_coefficients(formulas[best_model], round(models[[best_model]]$par, 6))
   best_error <- models[[best_model]]$value
   
-  if (verbose)
-    cat(paste0("Best formula found was\n\n   ", best_formula, "\n\nwith error = ", best_error, "\n\n"))
+  best_formula_maxima <- system(paste0('sh simplify.sh "', best_formula, '"'), T)
   
-  best_formula
+  if (verbose)
+    cat(paste0("Best formula found was\n\n   ", best_formula_maxima, "\n\nRMSE = ", best_error, "\n\n"))
+  
+  best_formula_maxima
 }

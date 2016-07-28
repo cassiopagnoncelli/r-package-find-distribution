@@ -50,7 +50,7 @@ formula_find <- function(y, ..., verbose=T, keywords=NULL) {
     if (abs(results$err) < 1e-6)
       cat(paste0('Found this one (exact): ', results$formula, '\n'))
     else
-      cat(paste0('Found this one (exact): ', results$formula, '\n',
+      cat(paste0('Found this one (approx): ', results$formula, '\n',
                  '  RMSE=', results$err, '   R^2=', rsq(results$formula), '\n'))
   }
   
