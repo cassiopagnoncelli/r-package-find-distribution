@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate formulas from grammar.
-time python strings.py --file=grammars/arithmetic-$1.gr --depth=3 --output=formulas.txt
+time python3 strings.py --file=grammars/arithmetic-$1.gr --depth=3 --output=formulas.txt
 
 # Simplify formulas in Maxima.
 echo "display2d: false;" > maxima.in

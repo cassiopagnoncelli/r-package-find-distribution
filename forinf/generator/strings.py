@@ -1,6 +1,8 @@
 import argparse
 import sys
 from copy import *
+from functools import reduce
+from json import dumps
 
 # Output file.
 f = None
@@ -51,7 +53,7 @@ class SyntacticTree(object):
     #   s_j: number of possible direct derivations at leaf i, nums_rules[i].
     #
     V = len(directions)
-    v = map(lambda i: (n // reduce(lambda acc, j: acc * j, nums_rules[i+1:], 1)) % nums_rules[i], range(V))
+    v = list(map(lambda i: (n // reduce(lambda acc, j: acc * j, nums_rules[i+1:], 1)) % nums_rules[i], range(V)))
     # When expansion is at its last stage (leaf_distance=0), only expansions that generate complete trees take place.
     #if leaf_distance == 0 and reduce(lambda a, b: a or b, map(lambda i: directions[i]['symbol'].isupper(), range(V)), False):
     #  return self
@@ -76,7 +78,7 @@ class SyntacticTree(object):
     global f
     V = len(directions)
     for n in range(num_trees):
-      v = map(lambda i: (n // reduce(lambda acc, j: acc * j, nums_rules[i+1:], 1)) % nums_rules[i], range(V))
+      v = list(map(lambda i: (n // reduce(lambda acc, j: acc * j, nums_rules[i+1:], 1)) % nums_rules[i], range(V)))
       # Append children accordingly and print them.
       valid = True
       i = 0
@@ -87,8 +89,8 @@ class SyntacticTree(object):
       if valid:
         f.write(self.to_str() + "\n")
       # Clear children.
-      #for i in xrange(V):
-      #  self.delete_child(directions[i]['path'])
+      for i in range(V):
+        self.delete_child(directions[i]['path'])
       return self
 
 # Given a syntactic tree and a depth, generate all possible strings wherein syntactic tree is bounded by 'depth'.
@@ -100,9 +102,9 @@ def expand_tree(tree, symtable):
   if directions == [{'path': [], 'symbol': 'S'}]:
     return [ deepcopy(tree).replace_children(symtable['S'][i]) for i in range(len(symtable['S'])) ]
   else:
-    num_trees = reduce(lambda x, y: x*y, map(lambda x: len(symtable[x['symbol']]), directions), 1)
+    num_trees = reduce(lambda x, y: x*y, list(map(lambda x: len(symtable[x['symbol']]), directions)), 1)
     num_leafs = len(directions)
-    nums_rules = map(lambda x: len(symtable[x['symbol']]), directions)
+    nums_rules = list(map(lambda x: len(symtable[x['symbol']]), directions))
     trees = [ deepcopy(tree).extend(symtable, directions, nums_rules, i) for i in range(num_trees) ]
     return trees
 
@@ -117,8 +119,8 @@ def gen_strings(symtable, depth, l):
   for tree in l:
     directions = []
     tree.find_nonterminal_leafs([], directions, symtable)
-    num_trees = reduce(lambda x, y: x*y, map(lambda x: len(symtable[x['symbol']]), directions), 1)
-    nums_rules = map(lambda x: len(symtable[x['symbol']]), directions)
+    num_trees = reduce(lambda x, y: x*y, list(map(lambda x: len(symtable[x['symbol']]), directions)), 1)
+    nums_rules = list(map(lambda x: len(symtable[x['symbol']]), directions))
     tree.extend_and_print(symtable, directions, nums_rules, num_trees)
 
 # Break a string into tokens.
@@ -136,9 +138,9 @@ def parse_grammar(fpath):
     l = line.strip().split(':')
     if len(l) == 2:
       var = l[0].strip()
-      prods = map(gen_tokens, map(lambda s: s.strip(), l[1].split('|')))
+      prods = list(map(gen_tokens, map(lambda s: s.strip(), l[1].split('|'))))
       for prod in prods:
-        if table.has_key(var):
+        if var in table:
           table[var].append(prod)
         else:
           table[var] = [prod]
@@ -155,8 +157,7 @@ def check_arg(args=None):
 
 # Debug symbol table.
 def debug(obj):
-  from json import dumps
-  print dumps(obj, sort_keys=True, indent=2)
+  print(dumps(obj, sort_keys=True, indent=2))
 
 # Main program, which will be executed when loaded not as a library.
 if __name__ == '__main__':
