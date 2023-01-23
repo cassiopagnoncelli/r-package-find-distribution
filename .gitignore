@@ -17,3 +17,7 @@ vignettes/*.pdf
 # builds and checks
 inferDistribution_*
 inferDistribution.Rcheck
+
+# Foring
+forinf/generator/formulas.txt
+
